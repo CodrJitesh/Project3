@@ -206,13 +206,13 @@ const Approvals = () => {
             <div className="flex flex-col sm:flex-row gap-3">
               <button
                 onClick={() => handleReview('approved')}
-                className="flex-1 py-3 bg-accent-success hover:bg-accent-success/90 text-white rounded-xl font-medium transition-colors shadow-lg hover:shadow-xl"
+                className="flex-1 py-3 bg-green-800 hover:bg-green-800/90 text-white rounded-xl font-medium transition-colors shadow-lg hover:shadow-xl"
               >
                 Approve
               </button>
               <button
                 onClick={() => handleReview('rejected')}
-                className="flex-1 py-3 bg-accent-danger hover:bg-accent-danger/90 text-white rounded-xl font-medium transition-colors shadow-lg hover:shadow-xl"
+                className="flex-1 py-3 bg-red-800 hover:bg-red-800/90 text-white rounded-xl font-medium transition-colors shadow-lg hover:shadow-xl"
               >
                 Reject
               </button>
