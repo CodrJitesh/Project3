@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { useAuth } from '../context/AuthContext';
 import { leaveAPI } from '../utils/api';
@@ -13,11 +13,7 @@ const Approvals = () => {
   const [filter, setFilter] = useState('pending');
   const [reviewModal, setReviewModal] = useState({ show: false, leave: null, comment: '' });
 
-  useEffect(() => {
-    fetchLeaves();
-  }, []);
-
-  const fetchLeaves = async () => {
+  const fetchLeaves = useCallback(async () => {
     try {
       const endpoint = user.role === 'admin' ? leaveAPI.getAllLeaves : leaveAPI.getTeamLeaves;
       const { data } = await endpoint();
@@ -27,7 +23,11 @@ const Approvals = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [user.role]);
+
+  useEffect(() => {
+    fetchLeaves();
+  }, [fetchLeaves]);
 
   const handleReview = async (status) => {
     try {
